@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
+import ResponsiveResults from "./ResponsiveResults";
 
 function App() {
   const [error, setError] = useState(null);
@@ -31,7 +32,7 @@ function App() {
     return <div>Error: {error.message}</div>;
   } else {
     return <>
-      <img className="logo" src={logo} alt="MLH Prep Logo"></img>
+      <img className="logo" src={logo} alt="MLH Prep Logo"/>
       <div>
         <h2>Enter a city below 👇</h2>
         <input
@@ -42,9 +43,7 @@ function App() {
           {!isLoaded && <h2>Loading...</h2>}
           {console.log(results)}
           {isLoaded && results && <>
-            <h3>{results.weather[0].main}</h3>
-            <p>Feels like {results.main.feels_like}°C</p>
-            <i><p>{results.name}, {results.sys.country}</p></i>
+            <ResponsiveResults weather={results.weather[0].main} feelsLike={results.main.feels_like} place={results.name} country={results.sys.country}/>
           </>}
         </div>
       </div>
