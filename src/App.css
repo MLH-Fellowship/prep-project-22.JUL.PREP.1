@@ -20,12 +20,33 @@ input {
 }
 
 .Results {
+  color: black;
+  margin-top: 20px;
+}
+
+.Desktop {
+  margin-left: 300px;
+  margin-right: 300px;
   background-color: white;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.Tablet {
   margin-left: 150px;
   margin-right: 150px;
-  margin-top: 20px;
+  background-color: white;
   border-radius: 8px;
-  color: black;
+  padding: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.Mobile {
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color: white;
+  border-radius: 8px;
   padding: 10px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
