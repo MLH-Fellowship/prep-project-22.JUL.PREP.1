@@ -1,7 +1,18 @@
 body {
-    background-color: #133667;
-    color: white;
-    text-align: center;
+  background-color: #133667;
+  color: #fff;
+  text-align: center;
+}
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* 720 / 1280 = 0.5625 */
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: fill;
 }
 
 .logo {
@@ -16,17 +27,17 @@ input {
   padding: 10px;
   border-radius: 4px;
   border: 10px;
-  width: 200px
+  width: 200px;
 }
 
 .Results {
-  background-color: white;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   margin-left: 150px;
   margin-right: 150px;
   margin-top: 20px;
   border-radius: 8px;
-  color: black;
+  color: #fff;
   padding: 10px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-
