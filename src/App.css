@@ -31,13 +31,49 @@ input {
 }
 
 .Results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
-  margin-left: 150px;
-  margin-right: 150px;
-  margin-top: 20px;
   border-radius: 8px;
   color: #fff;
   padding: 10px;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: fit-content;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.weather-icon-and-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-icon-and-title h3 {
+  margin-right: 2.5rem;
+}
+
+.weather-icon-and-title + p {
+  margin-top: 0;
+}
+
+.weather-icon-and-title + p + i > p {
+  margin-top: 0;
+}
+
+.enter-city-title {
+  display: flex;
+  justify-content: center;
+}
+
+.enter-city-title h2 {
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-radius: 8px;
+  width: fit-content;
+  text-align: center;
+  padding: 0.5rem 2rem;
 }

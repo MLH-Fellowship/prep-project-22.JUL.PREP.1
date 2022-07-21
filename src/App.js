@@ -4,17 +4,22 @@ import logo from "./mlh-prep.png";
 import ReactPlayer from "react-player";
 import DayClear from "./assets/dayClear.mp4";
 import NightClear from "./assets/nightClear.mp4";
-import DayRain from "./assets/dayRain.mp4";
-import NightRain from "./assets/nightRain.mp4";
+import DayRainLeaves from "./assets/rainLeaves.mp4";
+import NightRainCity from "./assets/rainPigeons.mp4";
 import DayCloud from "./assets/dayCloud.mp4";
 import NightCloud from "./assets/nightCloud.mp4";
 import Haze from "./assets/haze.mp4";
+import dayThunder from "./assets/thunderDay.mp4";
+import nightThunder from "./assets/thunderNight.mp4";
+import wind from "./assets/windy.mp4";
 
 const weatherMap = new Map([
   ["Clear", [DayClear, NightClear]],
-  ["Rain", [DayRain, NightRain]],
+  ["Rain", [DayRainLeaves, NightRainCity]],
   ["Clouds", [DayCloud, NightCloud]],
   ["Haze", [Haze, NightCloud]],
+  ["Thunderstorm", [dayThunder, nightThunder]],
+  ["Squall", [wind, wind]],
 ]);
 
 function App() {
@@ -22,7 +27,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City");
   const [results, setResults] = useState(null);
-  const [backgrounVideo, setBackgroundVideo] = useState();
+  const [backgroundVideo, setBackgroundVideo] = useState();
 
   useEffect(() => {
     fetch(
@@ -65,7 +70,7 @@ function App() {
       <>
         <div className="player-wrapper">
           <ReactPlayer
-            url={backgrounVideo}
+            url={backgroundVideo}
             className="react-player"
             playing={true}
             controls={false}
@@ -78,7 +83,9 @@ function App() {
         <div style={{ position: "absolute", top: 0 }}>
           <img className="logo" src={logo} alt="MLH Prep Logo"></img>
           <div>
-            <h2>Enter a city below 👇</h2>
+            <div className="enter-city-title">
+              <h2>Enter a city below 👇</h2>
+            </div>
             <input
               type="text"
               value={city}
@@ -90,10 +97,13 @@ function App() {
               {console.log(results)}
               {isLoaded && results && (
                 <>
-                  <img
-                    src={`https://openweathermap.org/img/wn/${results.weather[0].icon}@2x.png`}
-                  />
-                  <h3>{results.weather[0].main}</h3>
+                  <div className="weather-icon-and-title">
+                    <img
+                      src={`https://openweathermap.org/img/wn/${results.weather[0].icon}@2x.png`}
+                      alt="weather icon"
+                    />
+                    <h3>{results.weather[0].main}</h3>
+                  </div>
                   <p>Feels like {results.main.feels_like}°C</p>
                   <i>
                     <p>
