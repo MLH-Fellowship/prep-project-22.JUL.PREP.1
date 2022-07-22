@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import useFetch from "./hooks/useFetch";
+import Cities from "./Components/Cities";
 import logo from "./mlh-prep.png";
 import ResponsiveResults from "./ResponsiveResults";
 import ReactPlayer from "react-player";
@@ -43,6 +45,18 @@ function App() {
   const [city, setCity] = useState("New York City");
   const [results, setResults] = useState(null);
   const [backgroundVideo, setBackgroundVideo] = useState();
+  const { data, setData } = useFetch();
+  const [countryCode, setCountryCode] = useState("US");
+  const [objects, setObjects] = useState([]);
+  const [content, setcontent] = useState("");
+  const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    // no city is selected yet
+    if (city === "" && countryCode === "") {
+      setData({ ...data, cityPrefix: inputValue });
+    }
+  }, [inputValue]);
 
   useEffect(() => {
     function onSuccess(position) {
@@ -76,9 +90,14 @@ function App() {
   }, []);
 
   useEffect(() => {
+    //city is selected ==> fill the input field and hide drop-down
+    if (city && countryCode) {
+      setInputValue(`${city}, ${countryCode}`);
+      setData({ ...data, results: null });
+    }
     fetch(
       "https://api.openweathermap.org/data/2.5/weather?q=" +
-        city +
+        `${city},${countryCode}` +
         "&units=metric" +
         "&appid=" +
         process.env.REACT_APP_APIKEY
@@ -107,7 +126,7 @@ function App() {
           setError(error);
         }
       );
-  }, [city]);
+  }, [city, countryCode]);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -132,11 +151,32 @@ function App() {
             <div className="enter-city-title">
               <h2>Enter a city below 👇</h2>
             </div>
+            <div
+            style={{
+              margin: "auto",
+              width: 300,
+            }}
+          >
             <input
               type="text"
-              value={city}
-              onChange={(event) => setCity(event.target.value)}
+              value={inputValue}
+              onChange={(event) => {
+                setInputValue(event.target.value);
+
+                // input is changed --> clear selected city
+                setCity("");
+                setCountryCode("");
+              }}
             />
+            {data.results !== null && (
+              <Cities
+                list={data.results}
+                selectCity={setCity}
+                selectCountry={setCountryCode}
+              />
+            )}
+          </div>
+          <br />
 
             <div className="Results">
               {!isLoaded && <h2 className="loading-title">Loading...</h2>}
