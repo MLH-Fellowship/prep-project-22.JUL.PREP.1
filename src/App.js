@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
+import ResponsiveResults from "./ResponsiveResults";
 import ReactPlayer from "react-player";
 import DayClear from "./assets/dayClear.mp4";
 import NightClear from "./assets/nightClear.mp4";
@@ -42,6 +43,37 @@ function App() {
   const [city, setCity] = useState("New York City");
   const [results, setResults] = useState(null);
   const [backgroundVideo, setBackgroundVideo] = useState();
+
+  useEffect(() => {
+    function onSuccess(position) {
+      let latitude = position.coords.latitude;
+      let longitude = position.coords.longitude;
+
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_APIKEY}`
+      )
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            setCity(result.name);
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        );
+    }
+
+    function onError(error) {
+      setError(error);
+    }
+
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser");
+    } else {
+      navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }
+  }, []);
 
   useEffect(() => {
     fetch(
@@ -107,23 +139,17 @@ function App() {
             />
 
             <div className="Results">
-              {!isLoaded && <h2>Loading...</h2>}
+              {!isLoaded && <h2 className="loading-title">Loading...</h2>}
               {console.log(results)}
               {isLoaded && results && (
                 <>
-                  <div className="weather-icon-and-title">
-                    <img
-                      src={`https://openweathermap.org/img/wn/${results.weather[0].icon}@2x.png`}
-                      alt="weather icon"
-                    />
-                    <h3>{results.weather[0].main}</h3>
-                  </div>
-                  <p>Feels like {results.main.feels_like}°C</p>
-                  <i>
-                    <p>
-                      {results.name}, {results.sys.country}
-                    </p>
-                  </i>
+                  <ResponsiveResults
+                    weather={results.weather[0].main}
+                    feelsLike={results.main.feels_like}
+                    place={results.name}
+                    country={results.sys.country}
+                    weatherIcon={results.weather[0].icon}
+                  />
                 </>
               )}
             </div>

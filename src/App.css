@@ -32,36 +32,16 @@ input {
 
 .Results {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  border-radius: 8px;
-  color: #fff;
-  padding: 10px;
-  margin: 0 auto;
-  margin-top: 20px;
-  width: fit-content;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-
-.weather-icon-and-title {
-  display: flex;
-  flex-direction: row;
   justify-content: center;
-  align-items: center;
+  color: black;
+  margin-top: 20px;
 }
 
-.weather-icon-and-title h3 {
-  margin-right: 2.5rem;
-}
-
-.weather-icon-and-title + p {
-  margin-top: 0;
-}
-
-.weather-icon-and-title + p + i > p {
-  margin-top: 0;
+.Results .loading-title {
+  background-color: rgba(255, 255, 255, 0.6);
+  width: fit-content;
+  border-radius: 8px;
+  padding: 10px;
 }
 
 .enter-city-title {
@@ -76,4 +56,107 @@ input {
   width: fit-content;
   text-align: center;
   padding: 0.5rem 2rem;
+}
+
+.weather-icon-and-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.weather-icon-and-title h3 {
+  margin-right: 2rem;
+  font-size: 1.75rem;
+}
+
+.Desktop {
+  margin-left: 300px;
+  margin-right: 300px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: fit-content;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.Tablet {
+  margin-left: 150px;
+  margin-right: 150px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  color: black;
+  padding: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.Mobile {
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  color: black;
+  padding: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.Iphone12mini {
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  color: black;
+  padding: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.Iphone11 {
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  color: black;
+  padding: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.Iphone12pro {
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  color: black;
+  padding: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.Desktop p,
+.Tablet p,
+.Mobile p {
+  margin-top: 0;
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.Iphone12mini p,
+.Iphone11 p,
+.Iphone12pro p {
+  margin-top: 0;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.Iphone12mini h3,
+.Iphone11 h3,
+.Iphone12pro h3 {
+  font-size: 1.25rem;
+  margin-right: 1.5rem;
+}
+
+.Iphone12mini img,
+.Iphone11 img,
+.Iphone12pro img {
+  height: 75px;
+  width: 75px;
 }
