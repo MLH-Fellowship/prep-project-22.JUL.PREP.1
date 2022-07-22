@@ -12,6 +12,11 @@ import Haze from "./assets/haze.mp4";
 import dayThunder from "./assets/thunderDay.mp4";
 import nightThunder from "./assets/thunderNight.mp4";
 import wind from "./assets/windy.mp4";
+import drizzle from "./assets/drizzle.mp4";
+import fog from "./assets/fog.mp4";
+import mist from "./assets/mist.mp4";
+import snow from "./assets/snow.mp4";
+import tornado from "./assets/tornado.mp4";
 
 const weatherMap = new Map([
   ["Clear", [DayClear, NightClear]],
@@ -20,6 +25,15 @@ const weatherMap = new Map([
   ["Haze", [Haze, NightCloud]],
   ["Thunderstorm", [dayThunder, nightThunder]],
   ["Squall", [wind, wind]],
+  ["Drizzle", [drizzle, drizzle]],
+  ["Fog", [fog, fog]],
+  ["Mist", [mist, mist]],
+  ["Snow", [snow, snow]],
+  ["Smoke", [fog, fog]],
+  ["Dust", [fog, fog]],
+  ["Ash", [fog, fog]],
+  ["Sand", [fog, fog]],
+  ["Tornado", [tornado, tornado]],
 ]);
 
 function App() {
