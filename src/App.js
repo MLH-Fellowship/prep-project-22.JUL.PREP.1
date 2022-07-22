@@ -122,8 +122,8 @@ function App() {
             controls={false}
             loop={true}
             muted={true}
-            width="100%"
-            height="100%"
+            width= "auto"
+            height= "auto"
           />
         </div>
         <div style={{ position: "absolute", top: 0 }}>
