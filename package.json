@@ -9,7 +9,13 @@
     "react-player": "^2.10.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+<<<<<<< HEAD
     "react-scripts": "4.0.3",
+=======
+    "react-player": "^2.10.1",
+    "react-responsive": "^9.0.0-beta.10",
+    "react-scripts": "^5.0.1",
+>>>>>>> 1bfe7bee75d1a249cd2e72bf83f77e2bf30083d4
     "web-vitals": "^1.0.1"
   },
   "scripts": {
