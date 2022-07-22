@@ -2,6 +2,7 @@ body {
   background-color: #133667;
   color: #fff;
   text-align: center;
+  overflow: hidden;
 }
 .player-wrapper {
   position: relative;
