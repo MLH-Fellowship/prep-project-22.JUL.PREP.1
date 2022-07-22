@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import "./App.css";
 import logo from "./mlh-prep.png";
 import ReactPlayer from "react-player";
@@ -17,6 +18,8 @@ import fog from "./assets/fog.mp4";
 import mist from "./assets/mist.mp4";
 import snow from "./assets/snow.mp4";
 import tornado from "./assets/tornado.mp4";
+import RequiredThings from './components/RequiredThings';
+
 
 const weatherMap = new Map([
   ["Clear", [DayClear, NightClear]],
@@ -90,8 +93,9 @@ function App() {
             controls={false}
             loop={true}
             muted={true}
-            width="100%"
-            height="100%"
+            width= "auto"
+            height= "auto"
+            
           />
         </div>
         <div style={{ position: "absolute", top: 0 }}>
@@ -122,15 +126,25 @@ function App() {
                   <i>
                     <p>
                       {results.name}, {results.sys.country}
+                      
                     </p>
                   </i>
+                 
+                  
+                  <RequiredThings results={results} />
                 </>
               )}
+               
             </div>
+           
           </div>
+          
         </div>
+       
       </>
+     
     );
+    
   }
 }
 
