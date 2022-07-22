@@ -19,8 +19,6 @@ import fog from "./assets/fog.mp4";
 import mist from "./assets/mist.mp4";
 import snow from "./assets/snow.mp4";
 import tornado from "./assets/tornado.mp4";
-import RequiredThings from './components/RequiredThings';
-
 
 const weatherMap = new Map([
   ["Clear", [DayClear, NightClear]],
@@ -125,12 +123,8 @@ function App() {
             controls={false}
             loop={true}
             muted={true}
-            width= "auto"
-            height= "auto"
-<<<<<<< HEAD
-            
-=======
->>>>>>> 1bfe7bee75d1a249cd2e72bf83f77e2bf30083d4
+            width="auto"
+            height="auto"
           />
         </div>
         <div style={{ position: "absolute", top: 0 }}>
@@ -150,46 +144,21 @@ function App() {
               {console.log(results)}
               {isLoaded && results && (
                 <>
-<<<<<<< HEAD
-                  <div className="weather-icon-and-title">
-                    <img
-                      src={`https://openweathermap.org/img/wn/${results.weather[0].icon}@2x.png`}
-                      alt="weather icon"
-                    />
-                    <h3>{results.weather[0].main}</h3>
-                  </div>
-                  <p>Feels like {results.main.feels_like}°C</p>
-                  <i>
-                    <p>
-                      {results.name}, {results.sys.country}
-                      
-                    </p>
-                  </i>
-                 
-                  
-                  <RequiredThings results={results} />
-=======
                   <ResponsiveResults
                     weather={results.weather[0].main}
                     feelsLike={results.main.feels_like}
                     place={results.name}
                     country={results.sys.country}
+                    results={results}
                     weatherIcon={results.weather[0].icon}
                   />
->>>>>>> 1bfe7bee75d1a249cd2e72bf83f77e2bf30083d4
                 </>
               )}
-               
             </div>
-           
           </div>
-          
         </div>
-       
       </>
-     
     );
-    
   }
 }
 
