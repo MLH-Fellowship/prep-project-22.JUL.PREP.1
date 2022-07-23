@@ -13,7 +13,7 @@ const useFetch = () => {
             const getCities = async() => {
                 try {
 
-                    const query = `q=${data.cityPrefix}&limit=10&types=city&apiKey=${process.env.REACT_APP_AUTOCOMPLETE_APIKEY}`;
+                    const query = `q=${data.cityPrefix}&limit=10&types=city&apiKey=9BvkEapCvTbvrjhU3CH4O1a5o_9XpBCyNkdDpVM-BxA`;
                     fetch(`${autoCompleteURL}${query}`).then((res) => res.json()).then((result) => {
 
                         console.log("Response", result);

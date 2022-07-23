@@ -46,7 +46,7 @@ function App() {
   const [results, setResults] = useState(null);
   const [backgroundVideo, setBackgroundVideo] = useState();
   const { data, setData } = useFetch();
-  const [countryCode, setCountryCode] = useState("US");
+  const [countryCode, setCountryCode] = useState("");
   const [objects, setObjects] = useState([]);
   const [content, setcontent] = useState("");
   const [inputValue, setInputValue] = useState("");
