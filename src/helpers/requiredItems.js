@@ -8,7 +8,9 @@ import Goggles from '../assets/img/googles.jpg';
 import SandScarf from '../assets/img/scarf.jpg';
 import Flashlight from '../assets/img/flashlight.jpg';
 import Jacket from '../assets/img/jacket.jpg';
-import Sunscream from '../assets/img/sunscreen.jpg';
+
+import Lipbalm from '../assets/img/lipBalm.webp';
+import WaterBotlle from '../assets/img/bottle.webp';
 
 
 const requiredItems = {
@@ -69,12 +71,13 @@ const requiredItems = {
 		Goggles: Goggles,
 	},
 	Clear: {
-		Sunglasses: Sunglasses,
-		BaseballCap: Cap,
-		Sunscream: Sunscream,
+		
+		Lipbalm: Lipbalm,
+		WaterBotlle: WaterBotlle,
 	},
 	Clouds: {
 		BaseballCap: Cap,
+		WaterBotlle: WaterBotlle,
 		
 		
 	},
