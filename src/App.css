@@ -1,10 +1,20 @@
 @import "./assets/css/requiredThings.css";
 
+h1 {
+  font-size: 22px;
+  margin-top: -16px;
+}
+
+h2 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 body {
   background-color: #133667;
   color: #fff;
   text-align: center;
-
+  overflow-x: hidden;
 }
 .player-wrapper {
   position: relative;
@@ -81,7 +91,7 @@ input {
   padding: 10px;
   margin: 0 auto;
   margin-top: 20px;
-  width: fit-content;
+  width: 500px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
@@ -92,6 +102,7 @@ input {
   border-radius: 8px;
   color: black;
   padding: 10px;
+  width: 450px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
@@ -102,6 +113,7 @@ input {
   border-radius: 8px;
   color: black;
   padding: 10px;
+  width: 400px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
@@ -112,6 +124,7 @@ input {
   border-radius: 8px;
   color: black;
   padding: 10px;
+  width: 400px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
@@ -122,6 +135,7 @@ input {
   border-radius: 8px;
   color: black;
   padding: 10px;
+  width: 400px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
@@ -132,6 +146,7 @@ input {
   border-radius: 8px;
   color: black;
   padding: 10px;
+  width: 400px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
