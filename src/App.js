@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
 import ResponsiveResults from "./ResponsiveResults";
+import { usePosition } from "./context/useCoordinates";
+import Map from "./components/Map";
 
 function App() {
   const [error, setError] = useState(null);
@@ -9,11 +11,15 @@ function App() {
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
 
+  const { setPosition } = usePosition();
+
   useEffect(() => {
 
     function onSuccess(position) {
       let latitude = position.coords.latitude;
       let longitude = position.coords.longitude;
+
+      setPosition({latitude, longitude});
 
       fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_APIKEY}`
@@ -46,7 +52,7 @@ function App() {
 
 
   useEffect(() => {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -81,6 +87,7 @@ function App() {
             <ResponsiveResults weather={results.weather[0].main} feelsLike={results.main.feels_like} place={results.name} country={results.sys.country}/>
           </>}
         </div>
+        <Map />
       </div>
     </>
   }
