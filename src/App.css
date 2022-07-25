@@ -107,46 +107,50 @@ input {
 }
 
 .Mobile {
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 0px;
+  margin-right: 0px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 8px;
   color: black;
   padding: 10px;
   width: 400px;
+  max-width: 100vw;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .Iphone12mini {
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 0px;
+  margin-right: 0px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 8px;
   color: black;
   padding: 10px;
   width: 400px;
+  max-width: 100vw;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .Iphone11 {
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 0px;
+  margin-right: 0px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 8px;
   color: black;
   padding: 10px;
   width: 400px;
+  max-width: 100vw;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .Iphone12pro {
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 0px;
+  margin-right: 0px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 8px;
   color: black;
   padding: 10px;
   width: 400px;
+  max-width: 100vw;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
