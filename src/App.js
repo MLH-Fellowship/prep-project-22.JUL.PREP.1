@@ -19,6 +19,8 @@ import fog from "./assets/fog.mp4";
 import mist from "./assets/mist.mp4";
 import snow from "./assets/snow.mp4";
 import tornado from "./assets/tornado.mp4";
+import useLocation from './hooks/useLocation';
+import WeatherMap from './assets/components/weatherMap/weatherMap';
 
 const weatherMap = new Map([
   ["Clear", [DayClear, NightClear]],
@@ -43,7 +45,13 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City");
   const [results, setResults] = useState(null);
+  const geoLocation = useLocation();
   const [backgroundVideo, setBackgroundVideo] = useState();
+  const [cityCoordinates, setCityCoordinates] = useState({
+    lat: geoLocation.coordinates.lat,
+    lon: geoLocation.coordinates.lng,
+  });
+
 
   useEffect(() => {
     function onSuccess(position) {
@@ -154,6 +162,14 @@ function App() {
                   />
                 </>
               )}
+            </div>
+            <div className="weather-map">
+                <WeatherMap
+                 city={city}
+                setCity={setCity}
+                cityCoordinates={cityCoordinates}
+                setCityCoordinates={setCityCoordinates}
+                />
             </div>
           </div>
         </div>
