@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import "./App.css";
 import logo from "./mlh-prep.png";
 import ResponsiveResults from "./ResponsiveResults";
@@ -130,8 +131,8 @@ function App() {
             controls={false}
             loop={true}
             muted={true}
-            width= "auto"
-            height= "auto"
+            width="auto"
+            height="auto"
           />
         </div>
         <div style={{ position: "absolute", top: 0 }}>
@@ -156,6 +157,7 @@ function App() {
                     feelsLike={results.main.feels_like}
                     place={results.name}
                     country={results.sys.country}
+                    results={results}
                     weatherIcon={results.weather[0].icon}
                   />
                 </>
