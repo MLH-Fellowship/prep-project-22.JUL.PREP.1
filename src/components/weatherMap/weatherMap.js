@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import leaflet from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import React, { useState, useEffect } from "react";
+import leaflet from "leaflet";
+import "leaflet/dist/leaflet.css";
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import {
   MapContainer,
   TileLayer,
@@ -22,7 +22,7 @@ leaflet.Marker.prototype.options.icon = DefaultIcon;
 
 const WeatherMap = ({ city, setCity, cityCoordinates, setCityCoordinates }) => {
   const [map, setMap] = useState();
-  const [position, setPosition] = useState({ Lat: 0, Long: 0, City: '' });
+  const [position, setPosition] = useState({ Lat: 0, Long: 0, City: "" });
 
   useEffect(() => {
     setPosition({
@@ -56,7 +56,13 @@ const WeatherMap = ({ city, setCity, cityCoordinates, setCityCoordinates }) => {
           center={[position.Lat, position.Long]}
           doubleClickZoom
           scrollWheelZoom
-          style={{ height: "500px", width: "80vw", marginLeft: "10vw", marginTop: "2rem" }}
+          style={{
+            height: "400px",
+            width: "80vw",
+            marginLeft: "10vw",
+            marginTop: "1.5rem",
+            marginBottom: "2rem",
+          }}
           zoom={7}
         >
           <TileLayer

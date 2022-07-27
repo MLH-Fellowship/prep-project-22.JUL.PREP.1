@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import "./App.css";
 import logo from "./mlh-prep.png";
 import ResponsiveResults from "./ResponsiveResults";
@@ -98,10 +99,6 @@ function App() {
             setIsLoaded(false);
           } else {
             let day = result.weather[0].icon.slice(2);
-            console.log(day);
-            // console.log(
-            //   weatherMap.get(results.weather[0].main)[day === "d" ? 0 : 1]
-            // );
             setBackgroundVideo(
               weatherMap.get(result.weather[0].main)[day === "d" ? 0 : 1]
             );
@@ -130,8 +127,8 @@ function App() {
             controls={false}
             loop={true}
             muted={true}
-            width= "auto"
-            height= "auto"
+            width="auto"
+            height="auto"
           />
         </div>
         <div style={{ position: "absolute", top: 0 }}>
@@ -148,7 +145,6 @@ function App() {
 
             <div className="Results">
               {!isLoaded && <h2 className="loading-title">Loading...</h2>}
-              {console.log(results)}
               {isLoaded && results && (
                 <>
                   <ResponsiveResults
@@ -156,6 +152,7 @@ function App() {
                     feelsLike={results.main.feels_like}
                     place={results.name}
                     country={results.sys.country}
+                    results={results}
                     weatherIcon={results.weather[0].icon}
                   />
                 </>
