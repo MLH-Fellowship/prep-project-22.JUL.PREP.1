@@ -6,78 +6,19 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import {
   MapContainer,
   TileLayer,
-  Marker,
-  Popup,
-  useMap,
-  useMapEvent,
 } from 'react-leaflet';
 import './weatherMap.css';
+import { SetMarkerDynamically } from './SetMarkerDynamically';
 
 const DefaultIcon = leaflet.icon({
   iconUrl: icon,
   shadowUrl: iconShadow,
   iconSize: [25, 41],
   iconAnchor: [12, 41],
+  popupAnchor: [0, -30],
 });
 
 leaflet.Marker.prototype.options.icon = DefaultIcon;
-
-const SetMarkerDynamically = ({
-  city,
-  setCity,
-  cityCoordinates,
-  setCityCoordinates,
-}) => {
-  const [position, setPosition] = useState([
-    cityCoordinates.lat,
-    cityCoordinates.lon,
-  ]);
-  
-  const map2 = useMap();
-
-  useEffect(() => {
-    map2.locate().on("locationfound", function (e) {
-      setPosition(e.latlng);
-      map.flyTo(e.latlng, map.getZoom());
-    });
-    //eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
-    if (cityCoordinates) {
-      setPosition([cityCoordinates.lat, cityCoordinates.lon]);
-    }
-  }, [cityCoordinates]);
-
-  const map = useMapEvent('click', (e) => {
-    // fetch(
-    //   `https://api.openweathermap.org/data/2.5/weather?lat=${e.latlng.lat}&lon=${e.latlng.lng}&appid=${process.env.REACT_APP_APIKEY}`
-    // )
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     setCityCoordinates({ lat: e.latlng.lat, lon: e.latlng.lng });
-    //     setCity(res.name);
-    //   });
-    setCityCoordinates({lat: e.latlng.lat, lon: e.latlng.lng});
-    map.setView(e.latlng, map.getZoom(), { animate: true });
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${e.latlng.lat}&lon=${e.latlng.lng}&appid=${process.env.REACT_APP_APIKEY}`
-    )
-      .then(result => result.json())
-      .then(
-        (result) => {
-          console.log("City changed on map");
-          setCity(result.name);
-        },
-        );
-  });
-
-  return (
-    <Marker position={[cityCoordinates.lat, cityCoordinates.lon]}>
-      <Popup>{city}</Popup>
-    </Marker>
-  );
-};
 
 const WeatherMap = ({ city, setCity, cityCoordinates, setCityCoordinates }) => {
   const [map, setMap] = useState();

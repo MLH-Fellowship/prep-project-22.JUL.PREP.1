@@ -19,7 +19,7 @@ import mist from "./assets/mist.mp4";
 import snow from "./assets/snow.mp4";
 import tornado from "./assets/tornado.mp4";
 import useLocation from './hooks/useLocation';
-import WeatherMap from './assets/components/weatherMap/weatherMap';
+import WeatherMap from './components/weatherMap/weatherMap';
 
 const weatherMap = new Map([
   ["Clear", [DayClear, NightClear]],
@@ -51,14 +51,10 @@ function App() {
     lon: geoLocation.coordinates.lng,
   });
 
-  const { setPosition } = usePosition();
-
   useEffect(() => {
     function onSuccess(position) {
       let latitude = position.coords.latitude;
       let longitude = position.coords.longitude;
-
-      setPosition({latitude, longitude});
 
       fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_APIKEY}`
@@ -67,6 +63,7 @@ function App() {
         .then(
           (result) => {
             setCity(result.name);
+            setCityCoordinates({ lat: latitude, lon: longitude });
           },
           (error) => {
             setIsLoaded(true);
@@ -137,7 +134,6 @@ function App() {
             height= "auto"
           />
         </div>
-        <Map />
         <div style={{ position: "absolute", top: 0 }}>
           <img className="logo" src={logo} alt="MLH Prep Logo"></img>
           <div>
