@@ -165,7 +165,7 @@ function App() {
             loop={true}
             muted={true}
             width="auto"
-            height={mainContainerHeight === 0 ? "600px" : mainContainerHeight}
+            height={mainContainerHeight === 0 ? "1200px" : mainContainerHeight}
           />
         </div>
         <div id="main-container" style={{ position: "absolute", top: 0 }}>
