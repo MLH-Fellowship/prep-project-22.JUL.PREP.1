@@ -62,6 +62,13 @@ export const SetMarkerDynamically = ({
       });
   });
 
+  useEffect(() => {
+    const marker = markerRef.current;
+    if(marker!=null){
+      map.setView(marker.getLatLng(), map.getZoom(), { animate: true });
+    }
+  }, [cityCoordinates]);
+
   return (
     <Marker
       draggable={draggable}
