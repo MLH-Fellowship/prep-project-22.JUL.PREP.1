@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import leaflet from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import React, { useState, useEffect } from "react";
+import leaflet from "leaflet";
+import "leaflet/dist/leaflet.css";
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import {
   MapContainer,
   TileLayer,
@@ -10,8 +10,8 @@ import {
   Popup,
   useMap,
   useMapEvent,
-} from 'react-leaflet';
-import './weatherMap.css';
+} from "react-leaflet";
+import "./weatherMap.css";
 
 const DefaultIcon = leaflet.icon({
   iconUrl: icon,
@@ -32,7 +32,7 @@ const SetMarkerDynamically = ({
     cityCoordinates.lat,
     cityCoordinates.lon,
   ]);
-  
+
   const map2 = useMap();
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const SetMarkerDynamically = ({
     }
   }, [cityCoordinates]);
 
-  const map = useMapEvent('click', (e) => {
+  const map = useMapEvent("click", (e) => {
     // fetch(
     //   `https://api.openweathermap.org/data/2.5/weather?lat=${e.latlng.lat}&lon=${e.latlng.lng}&appid=${process.env.REACT_APP_APIKEY}`
     // )
@@ -58,18 +58,16 @@ const SetMarkerDynamically = ({
     //     setCityCoordinates({ lat: e.latlng.lat, lon: e.latlng.lng });
     //     setCity(res.name);
     //   });
-    setCityCoordinates({lat: e.latlng.lat, lon: e.latlng.lng});
+    setCityCoordinates({ lat: e.latlng.lat, lon: e.latlng.lng });
     map.setView(e.latlng, map.getZoom(), { animate: true });
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${e.latlng.lat}&lon=${e.latlng.lng}&appid=${process.env.REACT_APP_APIKEY}`
     )
-      .then(result => result.json())
-      .then(
-        (result) => {
-          console.log("City changed on map");
-          setCity(result.name);
-        },
-        );
+      .then((result) => result.json())
+      .then((result) => {
+        console.log("City changed on map");
+        setCity(result.name);
+      });
   });
 
   return (
@@ -81,7 +79,7 @@ const SetMarkerDynamically = ({
 
 const WeatherMap = ({ city, setCity, cityCoordinates, setCityCoordinates }) => {
   const [map, setMap] = useState();
-  const [position, setPosition] = useState({ Lat: 0, Long: 0, City: '' });
+  const [position, setPosition] = useState({ Lat: 0, Long: 0, City: "" });
 
   useEffect(() => {
     setPosition({
@@ -115,7 +113,13 @@ const WeatherMap = ({ city, setCity, cityCoordinates, setCityCoordinates }) => {
           center={[position.Lat, position.Long]}
           doubleClickZoom
           scrollWheelZoom
-          style={{ height: "500px", width: "80vw", marginLeft: "10vw", marginTop: "2rem" }}
+          style={{
+            height: "400px",
+            width: "80vw",
+            marginLeft: "10vw",
+            marginTop: "1.5rem",
+            marginBottom: "2rem",
+          }}
           zoom={7}
         >
           <TileLayer

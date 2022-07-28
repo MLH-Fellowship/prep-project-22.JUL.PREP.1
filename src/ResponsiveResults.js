@@ -1,4 +1,5 @@
 import { useMediaQuery } from "react-responsive";
+import RequiredThings from "./components/RequiredThings";
 
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -30,6 +31,7 @@ const ResponsiveResults = ({
   feelsLike,
   country,
   place,
+  results,
   weatherIcon,
 }) => (
   <div>
@@ -48,6 +50,7 @@ const ResponsiveResults = ({
             {place}, {country}
           </p>
         </i>
+        <RequiredThings results={results} />
       </div>
     </Desktop>
     <Tablet>
@@ -65,6 +68,7 @@ const ResponsiveResults = ({
             {place}, {country}
           </p>
         </i>
+        <RequiredThings results={results} />
       </div>
     </Tablet>
     <Mobile>
@@ -82,6 +86,7 @@ const ResponsiveResults = ({
             {place}, {country}
           </p>
         </i>
+        <RequiredThings results={results} />
       </div>
     </Mobile>
     <Iphone11>
@@ -99,6 +104,7 @@ const ResponsiveResults = ({
             {place}, {country}
           </p>
         </i>
+        <RequiredThings results={results} />
       </div>
     </Iphone11>
     <Iphone12pro>
@@ -116,6 +122,7 @@ const ResponsiveResults = ({
             {place}, {country}
           </p>
         </i>
+        <RequiredThings results={results} />
       </div>
     </Iphone12pro>
     <Iphone12mini>
@@ -133,6 +140,7 @@ const ResponsiveResults = ({
             {place}, {country}
           </p>
         </i>
+        <RequiredThings results={results} />
       </div>
     </Iphone12mini>
   </div>

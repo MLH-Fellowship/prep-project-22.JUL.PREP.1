@@ -1,12 +1,30 @@
+@import "./assets/css/requiredThings.css";
+
+h1 {
+  font-size: 22px;
+  margin-top: -16px;
+}
+
+h2 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 body {
   background-color: #133667;
   color: #fff;
   text-align: center;
-  
+  overflow-x: hidden;
 }
+
+ul {
+  list-style: none;
+}
+
 .player-wrapper {
   position: relative;
-  padding-top: 56.25%; /* 720 / 1280 = 0.5625 */
+  padding-top: 56.25%;
+  /* 720 / 1280 = 0.5625 */
 }
 
 .react-player {
@@ -29,6 +47,51 @@ input {
   border-radius: 4px;
   border: 10px;
   width: 200px;
+}
+
+.no-suggestions {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #000;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  margin-bottom: -2rem;
+}
+
+.suggestions {
+  border: 1px solid #999;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+  border-top-width: 0;
+  list-style: none;
+  color: #000;
+  margin-top: 0px;
+  margin-left: -13px;
+  margin-bottom: -2rem;
+  max-height: 143px;
+  overflow-y: scroll;
+  padding-left: 0;
+  width: 320px;
+}
+
+.suggestions li {
+  padding: 0.5rem;
+}
+
+.suggestion-active,
+.suggestions li:hover {
+  background-color: #999;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.suggestions li:not(:last-of-type) {
+  border-bottom: 1px solid #999;
+}
+
+.cards {
+  margin-bottom: 30px;
 }
 
 .Results {
@@ -62,6 +125,7 @@ input {
 .weather-icon-and-title {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
 }
 
@@ -78,7 +142,7 @@ input {
   padding: 10px;
   margin: 0 auto;
   margin-top: 20px;
-  width: fit-content;
+  width: 500px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
@@ -89,46 +153,55 @@ input {
   border-radius: 8px;
   color: black;
   padding: 10px;
+  width: 450px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .Mobile {
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 0px;
+  margin-right: 0px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 8px;
   color: black;
   padding: 10px;
+  width: 400px;
+  max-width: 90vw;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .Iphone12mini {
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 0px;
+  margin-right: 0px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 8px;
   color: black;
   padding: 10px;
+  width: 400px;
+  max-width: 90vw;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .Iphone11 {
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 0px;
+  margin-right: 0px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 8px;
   color: black;
   padding: 10px;
+  width: 400px;
+  max-width: 90vw;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .Iphone12pro {
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 0px;
+  margin-right: 0px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 8px;
   color: black;
   padding: 10px;
+  width: 400px;
+  max-width: 90vw;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 

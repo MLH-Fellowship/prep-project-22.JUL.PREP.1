@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+
 import "./App.css";
+import useFetch from "./hooks/useFetch";
+import Cities from "./components/Cities";
 import logo from "./mlh-prep.png";
 import ResponsiveResults from "./ResponsiveResults";
 import ReactPlayer from "react-player";
@@ -18,8 +21,8 @@ import fog from "./assets/fog.mp4";
 import mist from "./assets/mist.mp4";
 import snow from "./assets/snow.mp4";
 import tornado from "./assets/tornado.mp4";
-import useLocation from './hooks/useLocation';
-import WeatherMap from './assets/components/weatherMap/weatherMap';
+import useLocation from "./hooks/useLocation";
+import WeatherMap from "./assets/components/weatherMap/weatherMap";
 
 const weatherMap = new Map([
   ["Clear", [DayClear, NightClear]],
@@ -50,8 +53,19 @@ function App() {
     lat: geoLocation.coordinates.lat,
     lon: geoLocation.coordinates.lng,
   });
+  const { data, setData } = useFetch();
+  const [countryCode, setCountryCode] = useState("");
+  // const [objects, setObjects] = useState([]);
+  // const [content, setcontent] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [mainContainerHeight, setMainContainerHeight] = useState(0);
 
-  const { setPosition } = usePosition();
+  useEffect(() => {
+    // no city is selected yet
+    if (city === "" && countryCode === "") {
+      setData({ ...data, cityPrefix: inputValue });
+    }
+  }, [inputValue]);
 
   useEffect(() => {
     function onSuccess(position) {
@@ -87,9 +101,14 @@ function App() {
   }, []);
 
   useEffect(() => {
+    //city is selected ==> fill the input field and hide drop-down
+    if (city && countryCode) {
+      setInputValue(`${city}, ${countryCode}`);
+      setData({ ...data, results: null });
+    }
     fetch(
       "https://api.openweathermap.org/data/2.5/weather?q=" +
-        city +
+        `${city},${countryCode}` +
         "&units=metric" +
         "&appid=" +
         process.env.REACT_APP_APIKEY
@@ -118,7 +137,21 @@ function App() {
           setError(error);
         }
       );
-  }, [city]);
+    //eslint-disable-next-line
+  }, [city, countryCode]);
+
+  //eslint-disable-next-line
+  useEffect(() => {
+    const mainContainer = document.querySelector("#main-container");
+    const currentMainHeight = mainContainer?.offsetHeight;
+    if (currentMainHeight) {
+      if (mainContainerHeight !== currentMainHeight) {
+        setMainContainerHeight(currentMainHeight);
+      }
+    }
+  });
+
+  console.log(`Height: ${mainContainerHeight}`);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -133,22 +166,42 @@ function App() {
             controls={false}
             loop={true}
             muted={true}
-            width= "auto"
-            height= "auto"
+            width="auto"
+            height={mainContainerHeight === 0 ? "1200px" : mainContainerHeight}
           />
         </div>
-        <Map />
-        <div style={{ position: "absolute", top: 0 }}>
+        <div id="main-container" style={{ position: "absolute", top: 0 }}>
           <img className="logo" src={logo} alt="MLH Prep Logo"></img>
           <div>
             <div className="enter-city-title">
               <h2>Enter a city below 👇</h2>
             </div>
-            <input
-              type="text"
-              value={city}
-              onChange={(event) => setCity(event.target.value)}
-            />
+            <div
+              style={{
+                margin: "auto",
+                width: 300,
+              }}
+            >
+              <input
+                type="text"
+                value={inputValue}
+                onChange={(event) => {
+                  setInputValue(event.target.value);
+
+                  // input is changed --> clear selected city
+                  setCity("");
+                  setCountryCode("");
+                }}
+              />
+              {data.results !== null && (
+                <Cities
+                  list={data.results}
+                  selectCity={setCity}
+                  selectCountry={setCountryCode}
+                />
+              )}
+            </div>
+            <br />
 
             <div className="Results">
               {!isLoaded && <h2 className="loading-title">Loading...</h2>}
@@ -160,18 +213,19 @@ function App() {
                     feelsLike={results.main.feels_like}
                     place={results.name}
                     country={results.sys.country}
+                    results={results}
                     weatherIcon={results.weather[0].icon}
                   />
                 </>
               )}
             </div>
             <div className="weather-map">
-                <WeatherMap
-                 city={city}
+              <WeatherMap
+                city={city}
                 setCity={setCity}
                 cityCoordinates={cityCoordinates}
                 setCityCoordinates={setCityCoordinates}
-                />
+              />
             </div>
           </div>
         </div>
