@@ -21,8 +21,8 @@ import fog from "./assets/fog.mp4";
 import mist from "./assets/mist.mp4";
 import snow from "./assets/snow.mp4";
 import tornado from "./assets/tornado.mp4";
-import useLocation from './hooks/useLocation';
-import WeatherMap from './assets/components/weatherMap/weatherMap';
+import useLocation from "./hooks/useLocation";
+import WeatherMap from "./assets/components/weatherMap/weatherMap";
 
 const weatherMap = new Map([
   ["Clear", [DayClear, NightClear]],
@@ -58,6 +58,7 @@ function App() {
   // const [objects, setObjects] = useState([]);
   // const [content, setcontent] = useState("");
   const [inputValue, setInputValue] = useState("");
+  const [mainContainerHeight, setMainContainerHeight] = useState(0);
 
   useEffect(() => {
     // no city is selected yet
@@ -134,7 +135,21 @@ function App() {
           setError(error);
         }
       );
-    }, [city, countryCode]);
+    //eslint-disable-next-line
+  }, [city, countryCode]);
+
+  //eslint-disable-next-line
+  useEffect(() => {
+    const mainContainer = document.querySelector("#main-container");
+    const currentMainHeight = mainContainer?.offsetHeight;
+    if (currentMainHeight) {
+      if (mainContainerHeight !== currentMainHeight) {
+        setMainContainerHeight(currentMainHeight);
+      }
+    }
+  });
+
+  console.log(`Height: ${mainContainerHeight}`);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -150,10 +165,10 @@ function App() {
             loop={true}
             muted={true}
             width="auto"
-            height="auto"
+            height={mainContainerHeight === 0 ? "1200px" : mainContainerHeight}
           />
         </div>
-        <div style={{ position: "absolute", top: 0 }}>
+        <div id="main-container" style={{ position: "absolute", top: 0 }}>
           <img className="logo" src={logo} alt="MLH Prep Logo"></img>
           <div>
             <div className="enter-city-title">
@@ -203,12 +218,12 @@ function App() {
               )}
             </div>
             <div className="weather-map">
-                <WeatherMap
-                 city={city}
+              <WeatherMap
+                city={city}
                 setCity={setCity}
                 cityCoordinates={cityCoordinates}
                 setCityCoordinates={setCityCoordinates}
-                />
+              />
             </div>
           </div>
         </div>
