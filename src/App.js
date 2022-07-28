@@ -22,7 +22,7 @@ import mist from "./assets/mist.mp4";
 import snow from "./assets/snow.mp4";
 import tornado from "./assets/tornado.mp4";
 import useLocation from "./hooks/useLocation";
-import WeatherMap from "./assets/components/weatherMap/weatherMap";
+import WeatherMap from "./components/weatherMap/weatherMap";
 
 const weatherMap = new Map([
   ["Clear", [DayClear, NightClear]],
@@ -55,8 +55,6 @@ function App() {
   });
   const { data, setData } = useFetch();
   const [countryCode, setCountryCode] = useState("");
-  // const [objects, setObjects] = useState([]);
-  // const [content, setcontent] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [mainContainerHeight, setMainContainerHeight] = useState(0);
 
@@ -79,6 +77,7 @@ function App() {
         .then(
           (result) => {
             setCity(result.name);
+            setCityCoordinates({ lat: latitude, lon: longitude });
           },
           (error) => {
             setIsLoaded(true);
@@ -118,14 +117,10 @@ function App() {
             setIsLoaded(false);
           } else {
             let day = result.weather[0].icon.slice(2);
-            console.log(day);
-            // console.log(
-            //   weatherMap.get(results.weather[0].main)[day === "d" ? 0 : 1]
-            // );
             setBackgroundVideo(
               weatherMap.get(result.weather[0].main)[day === "d" ? 0 : 1]
             );
-
+            setCityCoordinates({ lat: result.coord.lat, lon: result.coord.lon });
             setIsLoaded(true);
             setResults(result);
           }
@@ -203,7 +198,6 @@ function App() {
 
             <div className="Results">
               {!isLoaded && <h2 className="loading-title">Loading...</h2>}
-              {console.log(results)}
               {isLoaded && results && (
                 <>
                   <ResponsiveResults
