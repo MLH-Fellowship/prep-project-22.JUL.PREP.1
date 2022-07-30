@@ -57,6 +57,8 @@ function App() {
   const [countryCode, setCountryCode] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [mainContainerHeight, setMainContainerHeight] = useState(0);
+  const [dateTime, setDateTime] = useState(new Date());
+  const [forecasts, setForecasts] = useState([]);
 
   useEffect(() => {
     // no city is selected yet
@@ -78,6 +80,20 @@ function App() {
           (result) => {
             setCity(result.name);
             setCityCoordinates({ lat: latitude, lon: longitude });
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        );
+
+      fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_APIKEY}`
+      )
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            setForecasts(result.list);
           },
           (error) => {
             setIsLoaded(true);
@@ -144,7 +160,14 @@ function App() {
     }
   });
 
-  console.log(`Height: ${mainContainerHeight}`);
+  const handledtChange = (e) => {
+    setDateTime(e.target.value);
+  }
+
+  const handledtSubmit = (e) => {
+    e.preventDefault();
+    setResults(forecasts.find((forecast) => forecast.dt_txt === dateTime));
+  }
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -196,6 +219,25 @@ function App() {
             </div>
             <br />
 
+            <div className="enter-datetime">
+              <h2>Enter time + date below 👇</h2>
+              <p>Example: 2022-03-15 12:00:00</p>
+            </div>
+            <div
+              style={{
+                margin: "auto",
+                width: 300,
+              }}
+            >
+              <form onSubmit={handledtSubmit}>
+                <input
+                  type="text"
+                  name="datetime"
+                  onChange={handledtChange}
+                />
+              </form>
+            </div>
+
             <div className="Results">
               {!isLoaded && <h2 className="loading-title">Loading...</h2>}
               {isLoaded && results && (
@@ -203,7 +245,7 @@ function App() {
                   <ResponsiveResults
                     weather={results.weather[0].main}
                     feelsLike={results.main.feels_like}
-                    place={results.name}
+                    place={results.name || city}
                     country={results.sys.country}
                     results={results}
                     weatherIcon={results.weather[0].icon}
