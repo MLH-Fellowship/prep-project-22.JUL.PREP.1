@@ -122,6 +122,10 @@ input {
   padding: 0.5rem 2rem;
 }
 
+.enter-datetime {
+  margin-top: 1rem;
+}
+
 .weather-icon-and-title {
   display: flex;
   flex-direction: row;
